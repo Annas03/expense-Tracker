@@ -36,8 +36,6 @@ function UpdateTransactionList(){
     document.getElementById("income").checked = false
 
     UpdateBalance()
-    UpdateExpense()
-    // UpdateIncome()
     // UpdateTransactionListUI()
 
 }
@@ -47,12 +45,14 @@ function UpdateBalance(){
     if(transaction.type == "income"){
         let total =  parseInt(document.getElementById("balance").textContent) + transaction.Amount
         document.getElementById("balance").textContent = total.toString()
+        UpdateIncome(transaction)
         TransactionList.push(transaction)
     }
     else{
         let total = parseInt(document.getElementById("balance").textContent) - transaction.Amount 
         if(total >= 0){
             document.getElementById("balance").textContent = total.toString()
+            UpdateExpense(transaction)
             TransactionList.push(transaction)
         }
         else{
@@ -61,14 +61,15 @@ function UpdateBalance(){
     }
 }
 
-function UpdateExpense(){
+function UpdateExpense(transaction){
     let element = document.getElementById("exp")
-    let total = 0
-    for(let i = 0; i < TransactionList.length; i++){
-        if(TransactionList[i].type == "expense"){
-            total += parseInt(element.textContent) + TransactionList[i].Amount
-        }
-    }
+    total = parseInt(element.textContent) + transaction.Amount
+    element.textContent = total.toString()
+}
+
+function UpdateIncome(transaction){
+    let element = document.getElementById("inc")
+    total = parseInt(element.textContent) + transaction.Amount
     element.textContent = total.toString()
 }
 
