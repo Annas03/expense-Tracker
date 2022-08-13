@@ -15,9 +15,9 @@
             <div class="flex">
                 <h2 class = "text-xl font-bold">Balance:</h2>
                 <span class = "ml-2 text-xl font-bold">$</span>
-                <span id = "balance" class = "text-xl font-bold">5000</span>
+                <span id = "balance" class = "text-xl font-bold">0</span>
             </div>
-            <button id = "add-btn" class = "bg-black text-white px-3 font-semibold">ADD</button>
+            <button id = "add-btn" class = "bg-black text-white px-2 font-semibold rounded-xl">ADD</button>
         </div>
         <div id="add-transaction" class="border-2 my-5 hidden">
             <input id = "amount" type="text" placeholder = "Amount" class="font-semibold border-2 block w-96 mx-auto p-1 my-2 ">
@@ -30,32 +30,24 @@
                     <label for="income" class="font-semibold">Income</label>
                 </form>
             </div>
-            <button id = "add-trans" class="bg-black text-white font-semibold px-4 py-1 mx-36 my-2">Add Transaction</button>
+            <button id = "add-trans" class="bg-black text-white font-semibold px-4 py-1 mx-36 my-2 rounded-xl">Add Transaction</button>
         </div>
         <div class = "expense-income flex justify-between my-5">
             <div class="w-52 pl-5 py-5 border-2 rounded">
                 <h3 class = "text-xl font-semibold text-gray-400">Expense</h3>
                 <span class = "text-2xl font-bold text-red-600">$</span>
-                <span id = "exp" class = "span text-2xl font-bold text-red-600">5000</span>
+                <span id = "exp" class = "span text-2xl font-bold text-red-600">0</span>
             </div>
             <div class="w-52 pl-5 py-5 border-2 rounded">
                 <h3 class = "text-xl font-semibold text-gray-400">Income</h3>
                 <span class = "text-2xl font-bold text-green-600">$</span>
-                <span id="inc" class = "text-2xl font-bold text-green-600">10000</span>
+                <span id="inc" class = "text-2xl font-bold text-green-600">0</span>
             </div>
         </div>
         <div class="transactions-div">
             <h2 class = "text-xl font-bold my-2">Transactions</h2>
             <input type="search" placeholder="Search" id="search-bar" class = "bg-gray-300 w-full text-gray-500 font-bold text-md rounded-lg block px-3 py-1">
-            <div class = "transactions-list my-2">
-                <div class="transaction border-2 rounded-lg mt-2 px-5 flex justify-between">
-                    <h4 class = "py-1 text-lg font-semibold">Salary</h4>
-                    <p class = "py-1 text-lg font-semibold">$10000</p>
-                </div>
-                <div class="transaction border-2 rounded-lg mt-2 px-5 flex justify-between">
-                    <h4 class = "py-1 text-lg font-semibold">Cinema</h4>
-                    <p class = "py-1 text-lg font-semibold">$50</p>
-                </div>
+            <div id = "transactions-list" class = "my-2">
             </div>
         </div>
     </div>
