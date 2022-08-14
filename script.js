@@ -1,7 +1,7 @@
 let AddBtnStatus = false
 let AddTransaction = document.getElementById("add-transaction")
 let TransactionList = []
-let TransactionDiv = document.getElementsByClassName('transactions-list')
+// let TransactionDiv = document.getElementsByClassName('transactions-list')
 
 document.getElementById("add-btn").addEventListener("click", AddBtnClicked)
 document.getElementById("add-trans").addEventListener("click", UpdateTransactionList)
@@ -26,25 +26,35 @@ function UpdateTransactionList(){
     let income = document.getElementById("income")
     let SearchBar = document.getElementById("search-bar")
 
-
-    if(desc.value != "" && amount.value != "" && (expense.checked != false || income.checked != false)){
-        TransactionList.push(
-            {
-                desc:document.getElementById('desc').value,
-                Amount:parseInt(document.getElementById("amount").value),
-                type:document.getElementById("expense").checked ? "expense" : "income"
-            }
-        )
-        desc.value = null
-        amount.value = null
-        expense.checked = false
-        income.checked = false
-        SearchBar.value = null
-    
-        UpdateBalance()
-        UpdateTransactionListUI(TransactionList)
+    if(desc.value != "" && amount.value != ""){
+        if(expense.checked == false && income.checked == false){
+            alert("select income or an expense!")
+        }
+        else if(isNaN(Number(desc.value)) && typeof Number(amount.value) === "number"){
+            TransactionList.push(
+                {
+                    desc:document.getElementById('desc').value,
+                    Amount:parseInt(document.getElementById("amount").value),
+                    type:document.getElementById("expense").checked ? "expense" : "income"
+                }
+            )
+            UpdateBalance()
+            UpdateTransactionListUI(TransactionList)
+            ClearForm(SearchBar)
+        }
+        else{
+           alert("Invalid Input")
+        }
     }
+}
 
+function ClearForm(SearchBar){
+    desc.value = null
+    amount.value = null
+    expense.checked = false
+    income.checked = false
+    SearchBar.value = null
+    SearchList()
 }
 
 function UpdateBalance(){
@@ -63,7 +73,7 @@ function UpdateBalance(){
             TransactionList.push(transaction)
         }
         else{
-            alert("You can't Afford that Expense")
+            alert("You can't Afford that!")
         }
     }
 }
