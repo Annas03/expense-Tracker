@@ -20,21 +20,30 @@ function AddBtnClicked(){
 }
 
 function UpdateTransactionList(){
-    TransactionList.push(
-        {
-            desc:document.getElementById('desc').value,
-            Amount:parseInt(document.getElementById("amount").value),
-            type:document.getElementById("expense").checked ? "expense" : "income"
-        }
-    )
-    document.getElementById('desc').value = null
-    document.getElementById("amount").value = null
-    document.getElementById("expense").checked = false
-    document.getElementById("income").checked = false
+    let desc = document.getElementById('desc')
+    let amount = document.getElementById("amount")
+    let expense = document.getElementById("expense")
+    let income = document.getElementById("income")
+    let SearchBar = document.getElementById("search-bar")
 
-    document.getElementById("search-bar").value = null
-    UpdateBalance()
-    UpdateTransactionListUI(TransactionList)
+
+    if(desc.value != "" && amount.value != "" && (expense.checked != false || income.checked != false)){
+        TransactionList.push(
+            {
+                desc:document.getElementById('desc').value,
+                Amount:parseInt(document.getElementById("amount").value),
+                type:document.getElementById("expense").checked ? "expense" : "income"
+            }
+        )
+        desc.value = null
+        amount.value = null
+        expense.checked = false
+        income.checked = false
+        SearchBar.value = null
+    
+        UpdateBalance()
+        UpdateTransactionListUI(TransactionList)
+    }
 
 }
 
@@ -79,7 +88,6 @@ function UpdateTransactionListUI(Transactions){
 }
 
 function SearchList(){
-    console.log("funciton called")
     let SearchBar = document.getElementById("search-bar")
     let element = document.getElementById("transactions-list")
     if(SearchBar.value == ""){
