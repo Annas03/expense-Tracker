@@ -93,7 +93,7 @@ function UpdateIncome(transaction){
 function UpdateTransactionListUI(Transactions){
     let element = document.getElementById("transactions-list")
     let last_entry = Transactions.pop()
-    element.innerHTML += '<div class="transaction border-2 rounded-lg mt-2 px-5 flex justify-between"><h4 class = "py-1 text-lg font-semibold">'+last_entry.desc+'</h4><p class = "py-1 text-lg font-semibold">$'+last_entry.Amount+'</p></div>'
+    element.innerHTML += '<div class="border-2 border-green-400 my-2 px-4 flex justify-between"><h4 class = "text-center py-1 text-lg font-semibold">'+last_entry.desc+'</h4><p class = "py-1 text-lg font-semibold">$'+last_entry.Amount+'</p></div>'
     Transactions.push(last_entry)
 }
 
@@ -103,14 +103,14 @@ function SearchList(){
     if(SearchBar.value == ""){
         element.innerHTML = null
         for(let i=0; i<TransactionList.length; i++){
-            element.innerHTML += '<div class="transaction border-2 rounded-lg mt-2 px-5 flex justify-between"><h4 class = "py-1 text-lg font-semibold">'+TransactionList[i].desc+'</h4><p class = "py-1 text-lg font-semibold">$'+TransactionList[i].Amount+'</p></div>'
+            element.innerHTML += '<div class="border-2 border-green-400 my-2 px-4 flex justify-between"><h4 class = "text-center py-1 text-lg font-semibold">'+TransactionList[i].desc+'</h4><p class = "py-1 text-lg font-semibold">$'+TransactionList[i].Amount+'</p></div>'
         }
     }
     else{
         element.innerHTML = null
         for(let i=0; i<TransactionList.length; i++){
             if(TransactionList[i].desc.toLowerCase().search(SearchBar.value.toLowerCase()) != -1){
-                element.innerHTML += '<div class="transaction border-2 rounded-lg mt-2 px-5 flex justify-between"><h4 class = "py-1 text-lg font-semibold">'+TransactionList[i].desc+'</h4><p class = "py-1 text-lg font-semibold">$'+TransactionList[i].Amount+'</p></div>'
+                element.innerHTML += '<div class="border-2 border-green-400 my-2 px-4 flex justify-between"><h4 class = "text-center py-1 text-lg font-semibold">'+TransactionList[i].desc+'</h4><p class = "py-1 text-lg font-semibold">$'+TransactionList[i].Amount+'</p></div>'
             }
         }
     }
