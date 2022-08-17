@@ -1,23 +1,23 @@
-let AddBtnStatus = false
+// let AddBtnStatus = false
 let AddTransaction = document.getElementById("add-transaction")
 let TransactionList = []
 // let TransactionDiv = document.getElementsByClassName('transactions-list')
 
-document.getElementById("add-btn").addEventListener("click", AddBtnClicked)
+// document.getElementById("add-btn").addEventListener("click", AddBtnClicked)
 document.getElementById("add-trans").addEventListener("click", UpdateTransactionList)
 document.getElementById("search-bar").addEventListener("input", SearchList)
 
-function AddBtnClicked(){
-    AddBtnStatus = !AddBtnStatus
-    if(AddBtnStatus){
-        AddTransaction.style.display = "block"
-        document.getElementById("add-btn").innerText = "X"
-    }
-    else{
-        AddTransaction.style.display = "none"
-        document.getElementById("add-btn").innerText = "ADD"
-    }
-}
+// function AddBtnClicked(){
+//     AddBtnStatus = !AddBtnStatus
+//     if(AddBtnStatus){
+//         AddTransaction.style.display = "block"
+//         document.getElementById("add-btn").innerText = "X"
+//     }
+//     else{
+//         AddTransaction.style.display = "none"
+//         document.getElementById("add-btn").innerText = "ADD"
+//     }
+// }
 
 function UpdateTransactionList(){
     let desc = document.getElementById('desc')
@@ -35,7 +35,8 @@ function UpdateTransactionList(){
                 {
                     desc:document.getElementById('desc').value,
                     Amount:parseInt(document.getElementById("amount").value),
-                    type:document.getElementById("expense").checked ? "expense" : "income"
+                    type:document.getElementById("expense").checked ? "expense" : "income",
+                    color:expense.checked ? "red" : "green"
                 }
             )
             UpdateBalance()
@@ -93,7 +94,7 @@ function UpdateIncome(transaction){
 function UpdateTransactionListUI(Transactions){
     let element = document.getElementById("transactions-list")
     let last_entry = Transactions.pop()
-    element.innerHTML += '<div class="border-2 border-green-400 my-2 px-4 flex justify-between"><h4 class = "text-center py-1 text-lg font-semibold">'+last_entry.desc+'</h4><p class = "py-1 text-lg font-semibold">$'+last_entry.Amount+'</p></div>'
+    element.innerHTML += '<div class="relative bg-white border-2 border-t-0 border-gray-200 rounded my-2 flex justify-between"><h4 class = "text-center py-1 text-lg pl-3 font-semibold">'+last_entry.desc+'</h4><p class = "pr-3 py-1 text-lg font-semibold">$'+last_entry.Amount+'</p><span class="absolute w-1 h-full bg-'+last_entry.color+'-400 right-0"></span></div>'
     Transactions.push(last_entry)
 }
 
@@ -103,14 +104,14 @@ function SearchList(){
     if(SearchBar.value == ""){
         element.innerHTML = null
         for(let i=0; i<TransactionList.length; i++){
-            element.innerHTML += '<div class="border-2 border-green-400 my-2 px-4 flex justify-between"><h4 class = "text-center py-1 text-lg font-semibold">'+TransactionList[i].desc+'</h4><p class = "py-1 text-lg font-semibold">$'+TransactionList[i].Amount+'</p></div>'
+            element.innerHTML += '<div class="relative bg-white border-2 border-t-0 border-gray-200 rounded my-2 flex justify-between"><h4 class = "text-center py-1 text-lg pl-3 font-semibold">'+TransactionList[i].desc+'</h4><p class = "pr-3 py-1 text-lg font-semibold">$'+TransactionList[i].Amount+'</p><span class="absolute w-1 h-full bg-'+TransactionList[i].color+'-400 right-0"></span></div>'
         }
     }
     else{
         element.innerHTML = null
         for(let i=0; i<TransactionList.length; i++){
             if(TransactionList[i].desc.toLowerCase().search(SearchBar.value.toLowerCase()) != -1){
-                element.innerHTML += '<div class="border-2 border-green-400 my-2 px-4 flex justify-between"><h4 class = "text-center py-1 text-lg font-semibold">'+TransactionList[i].desc+'</h4><p class = "py-1 text-lg font-semibold">$'+TransactionList[i].Amount+'</p></div>'
+                element.innerHTML += '<div class="relative bg-white border-2 border-t-0 border-gray-200 rounded my-2 flex justify-between"><h4 class = "text-center py-1 text-lg pl-3 font-semibold">'+TransactionList[i].desc+'</h4><p class = "pr-3 py-1 text-lg font-semibold">$'+TransactionList[i].Amount+'</p><span class="absolute w-1 h-full bg-'+TransactionList[i].color+'-400 right-0"></span></div>'
             }
         }
     }
